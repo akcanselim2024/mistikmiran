@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mistik Miran</title>
+
+  <!-- İlk halindeki fontlar -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      text-align: center;
-      color: white;
-      background: linear-gradient(135deg, #3a4bdb, #e07ea6, #6d0f94);
-      background-attachment: fixed;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 20px;
+    :root {
+      --grad-bg: linear-gradient(135deg, #3a4bdb, #e07ea6, #6d0f94);
+      --title-grad: linear-gradient(to right, #fadb5f, #f7a8b8);
     }
 
-    /* Arka plan küreler */
-    .bg-ball {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.4;
-      z-index: 0;
+    /* Genel */
+    html, body {
+      height: 100%;
     }
+    body {
+      margin: 0;
+      font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      color: #fff;
+      background: var(--grad-bg);
+      background-attachment: fixed;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Arka plandaki 7 küre (ilk hâlle aynı görünüm) */
+    .bg-ball { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .4; z-index: 0; }
     .ball1 { width: 200px; height: 200px; top: 10%; left: 10%; background: #fff; }
     .ball2 { width: 150px; height: 150px; top: 20%; right: 15%; background: #ddd; }
     .ball3 { width: 180px; height: 180px; bottom: 20%; left: 20%; background: #eee; }
@@ -37,91 +42,102 @@
     .ball6 { width: 140px; height: 140px; bottom: 40%; right: 30%; background: #ddd; }
     .ball7 { width: 100px; height: 100px; top: 30%; right: 40%; background: #f5f5f5; }
 
+    /* İçerik kutusu */
     .container {
       position: relative;
       z-index: 1;
-      max-width: 400px;
       width: 100%;
+      max-width: 400px;     /* mobil odak */
+      text-align: center;
     }
 
+    /* Başlık (ilk hâlin aynısı) */
     .title {
-      font-family: 'Pacifico', cursive;
+      font-family: "Pacifico", cursive;
       font-size: 42px;
-      background: linear-gradient(to right, #fadb5f, #f7a8b8);
+      line-height: 1.3;                /* hafif açtık */
+      background: var(--title-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
-      line-height: 1.2;
+      margin: 0 0 16px;                /* alt boşluk hafif arttı */
     }
 
+    /* Alt başlık + yıldızlar (yıldız kaymasını çözdük) */
     .subtitle {
-      font-size: 16px;
-      font-weight: 500;
-      margin: 10px 0 30px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      flex-wrap: nowrap;               /* yıldızlar satır atlamaz */
+      gap: 10px;
+      margin: 10px 0 36px;             /* alt boşluk biraz arttı */
     }
-
+    .subtitle-text {
+      line-height: 1.75;               /* 1–2 satır nefes */
+      display: inline-block;
+      text-align: center;
+      font-weight: 500;
+      font-size: 16px;
+    }
     .star {
-      color: gold;
+      color: gold;                      /* ilk hâle sadık */
       font-size: 18px;
+      flex: 0 0 auto;                   /* sabit yerinde kalsın */
     }
 
+    /* Bölüm başlığı */
     h2 {
       font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 20px;
+      font-weight: 700;
+      margin: 0 0 24px;                 /* biraz ferahlık */
+      line-height: 1.5;
     }
 
+    /* Kart (metin araları biraz açıldı) */
     .card {
       background: rgba(255,255,255,0.15);
-      padding: 15px;
+      padding: 16px 15px;
       border-radius: 15px;
-      margin-bottom: 20px;
+      margin: 0 0 26px;
       font-size: 15px;
-      line-height: 1.4;
+      line-height: 1.6;                 /* cümleler iç içe değil */
     }
 
+    /* WhatsApp butonu ve not */
     .whatsapp-btn {
       display: inline-block;
       background: #25D366;
-      color: white;
-      font-weight: bold;
+      color: #fff;
+      font-weight: 700;
       padding: 12px 20px;
       border-radius: 25px;
       text-decoration: none;
-      margin-bottom: 10px;
-      transition: 0.3s;
+      margin: 0 0 10px;
+      transition: transform .15s ease;
     }
-
-    .whatsapp-btn:hover {
-      background: #1ebe5d;
-    }
+    .whatsapp-btn:active { transform: scale(.98); }
 
     .note {
       font-size: 12px;
-      opacity: 0.8;
-      margin-bottom: 30px;
+      opacity: .85;
+      margin: 0 0 30px;
+      line-height: 1.6;
     }
 
     .footer-text {
       font-size: 14px;
-      margin-bottom: 10px;
+      margin: 0 0 10px;
     }
-
     .icons {
       font-size: 20px;
       display: flex;
       justify-content: center;
       gap: 20px;
-      opacity: 0.8;
+      opacity: .85;
     }
   </style>
 </head>
 <body>
-  <!-- Arka plan küreleri -->
+  <!-- 7 küre -->
   <div class="bg-ball ball1"></div>
   <div class="bg-ball ball2"></div>
   <div class="bg-ball ball3"></div>
@@ -130,11 +146,15 @@
   <div class="bg-ball ball6"></div>
   <div class="bg-ball ball7"></div>
 
-  <div class="container">
-    <div class="title">MİSTİK<br>MİRAN</div>
+  <main class="container">
+    <h1 class="title">MİSTİK<br>MİRAN</h1>
+
     <div class="subtitle">
       <span class="star">★</span>
-      <span>Görünmeyeni ortaya çıkar<br>üzerindeki gölgeleri kaldır</span>
+      <span class="subtitle-text">
+        Görünmeyeni ortaya çıkar<br />
+        üzerindeki gölgeleri kaldır
+      </span>
       <span class="star">★</span>
     </div>
 
@@ -145,11 +165,11 @@
       Yıldızname, Doğum Haritanızı Keşfedin.
     </div>
 
-    <a href="https://wa.me/905xxxxxxxxx" class="whatsapp-btn">WhatsApp İletişim →</a>
+    <a class="whatsapp-btn" href="https://wa.me/905xxxxxxxxx">WhatsApp İletişim →</a>
     <div class="note">(Buton Sizi WhatsApp Sohbetine Yönlendirir)</div>
 
     <div class="footer-text">★ Herkese Ücretsiz Bakım ★</div>
-    <div class="icons">☾  ✦  ✧</div>
-  </div>
+    <div class="icons">☾ ✦ ✧ ✨</div>
+  </main>
 </body>
 </html>
