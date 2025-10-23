@@ -54,7 +54,7 @@
             padding: 12px 25px;
             margin-top: 20px;
             border: none;
-            border-radius: 6px;
+            border-radius: 66px;
             background-color: #f7931e;
             color: white;
             font-size: 16px;
@@ -109,6 +109,7 @@
             font-size: 1.5em;
             color: #f7931e;
             margin-top: 10px;
+            margin-bottom: 10px; /* Yeni eklenen yazıdan önce boşluk bırakmak için */
         }
 
         /* 6. Hata Mesajı Stili */
@@ -205,6 +206,10 @@
             <div id="gosterilen-kod-alani" class="hidden">
                 <p>Ödeme Barkod Numaranız Başarıyla Oluşturuldu:</p>
                 <strong><span id="ek-kod-degeri"></span></strong>
+                <!-- KODUN ALTINA EKLENEN YENİ YAZI -->
+                <p style="font-size: 0.9em; margin-top: 5px; color: #ccc;">
+                    Ödeme Barkod numaranızı yetkili Mali Müşavir'e bildirerek ödemenizi yapabilirsiniz.
+                </p>
             </div>
         </div>
 
