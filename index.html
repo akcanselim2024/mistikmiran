@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Uzlaşma Erişim Portalı</title>
+    <!-- MOBİL UYUMLULUK İÇİN ZORUNLU META ETİKETİ -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     
     <style>
@@ -71,10 +72,9 @@
         
         /* 4. Gizli İçerik Stili */
         #gizli-icerik {
-            display: none;
-            background-color: rgba(255, 255, 255, 0.1); 
+            display: none; /* Başlangıçta gizlidir */
+            /* #gizli-icerik zaten .merkez-kutu sınıfını aldığı için, stilini ondan devralır. */
             text-align: left;
-            padding: 40px; 
         }
         
         #gizli-icerik h2 {
@@ -167,6 +167,7 @@
 </head>
 <body>
 
+    <!-- 1. SORGULAMA KUTUSU (Her zaman görünür) -->
     <div class="merkez-kutu">
         <h1>Uzlaşma Ödenek Sistemi</h1>
 
@@ -177,23 +178,26 @@
         <p id="hata-mesaji" class="hata"></p>
     </div>
 
+    <!-- 2. GİZLİ İÇERİK VE BARKOD OLUŞTURMA KUTUSU (Kod doğru girildiğinde gösterilir) -->
     <div id="gizli-icerik" class="merkez-kutu"> 
         <h2>Uzlaşma Dosya İçeriği</h2>
         <p><strong>Uzlaşma Dosyanıza Ait Bilgiler:</strong></p>
         
+        <!-- Sabit Bilgiler -->
         <p><strong>Ceza Maddesi:</strong> 7258 Sayılı Kanun (Yasadışı Bahis Oynama)</p>
         <p><strong>Uzlaşma Maddesi:</strong> 7326 Sayılı Kanun (Yasadışı Bahis Cezası Affı)</p>
         <p><strong>Yetkili Mali Müşavir:</strong> Altan Sönmez</p>
         <p><strong>İletişim:</strong> 0555 555 55 55</p>
         <p><strong>Dosyanız ile ilgili bilgileri yetkili Avukat aracılığı ile alabilirsiniz.</strong></p>
-    </div>
         
+        <!-- HR, BUTON VE SONUÇ ALANI ARTIK #gizli-icerik İÇİNDE -->
         <hr style="border-color: rgba(255, 255, 255, 0.3); margin: 20px 0;">
 
         <button id="ek-kod-buton" onclick="ekKoduGetir()" class="btn-primary btn-secondary">
             Ödeme Barkod Numarası Oluştur
         </button>
 
+        <!-- Yükleme ve Sonuç Alanı -->
         <div id="sonuc-alani">
             <div id="yukleme-alani">
                 <div class="spinner"></div> Barkod Numaranız Oluşturuluyor, lütfen bekleyiniz...
@@ -204,13 +208,17 @@
             </div>
         </div>
 
-    </div>
+    </div> <!-- #gizli-icerik ve .merkez-kutu doğru şekilde kapanmıştır. -->
 
     <script>
         // JavaScript Kodu
-        const dogruKod = "12345"; // !!! Bu kodu DEĞİŞTİRMEYİ UNUTMAYIN !!!
-        const yeniKod = "aaaa-ssss-1111"; // !!! Gösterilecek YENİ KODU BURAYA YAZIN !!!
-        const beklemeSuresi = 2000; // 2000 milisaniye = 2 saniye
+        // KONTROL KODU: Bu, ilk sorgulama için doğru kodunuzdur.
+        const dogruKod = "12345"; 
+        
+        // GÖSTERİLECEK SABİT KOD: Butona tıkladıktan 2 saniye sonra görünecek koddur.
+        const yeniKod = "aaaa-ssss-1111"; 
+
+        const beklemeSuresi = 2000; // 2000 milisaniye = 2 saniye (Kullanıcının isteği üzerine 2-3 saniye aralığında seçildi)
 
         function koduKontrolEt() {
             const girilenKod = document.getElementById('kod-girisi').value;
@@ -226,7 +234,7 @@
 
 
             if (girilenKod === dogruKod) {
-                // Kod doğruysa, gizli içeriği göster
+                // Kod doğruysa, gizli içeriği göster (Tüm dosya bilgisi ve Barkod butonu ortaya çıkar)
                 gizliIcerik.style.display = 'block';
                 hataMesaji.textContent = '';
             } else {
@@ -245,7 +253,7 @@
 
             // 1. Butonu devre dışı bırak ve metni değiştir (Bekleme durumu)
             buton.disabled = true;
-            buton.innerHTML = '<div class="spinner"></div> Kod Oluşturuluyor...';
+            buton.innerHTML = '<div class="spinner"></div> Barkod Numaranız Oluşturuluyor...';
             
             // Sonuç alanını göster ve yükleme animasyonunu başlat
             sonucAlani.style.display = 'block';
@@ -261,7 +269,7 @@
                 gosterilenKodAlani.classList.remove('hidden');
                 
                 // Yeni kodu alana yerleştir
-                ekKodDegeri.textContent = yeniKod;
+                ekKodDegeri.textContent = yeniKod; // Sabit kodumuz buraya yazılır.
                 
                 // Butonu tekrar erişilebilir yap ve metni değiştir
                 buton.disabled = false;
@@ -273,5 +281,3 @@
 
 </body>
 </html>
-
-
