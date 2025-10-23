@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Uzlaşma Erişim Portalı</title>
+    <!-- MOBİL UYUMLULUK İÇİN ZORUNLU META ETİKETİ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     
     <style>
         /* CSS Başlangıcı */
@@ -11,16 +13,17 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px; /* Kenarlara boşluk ekle */
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Mavi Gradient Arka Plan */
-            color: #ffffff; /* Yazı rengini beyaz yap */
-            min-height: 100vh; /* Tam ekran yüksekliği */
+            color: #ffffff;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center; /* Dikeyde ortala */
             align-items: center; /* Yatayda ortala */
+            box-sizing: border-box;
         }
-
+        
         /* 2. Merkez Kutusu Stili */
         .merkez-kutu {
             background-color: rgba(0, 0, 0, 0.5); /* Yarı saydam siyah arka plan */
@@ -28,17 +31,19 @@
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             text-align: center;
-            width: 90%;
-            max-width: 400px; /* Maksimum genişlik belirle */
+            width: 100%; /* Mobil cihazlarda tam genişlik kullan */
+            max-width: 450px; /* Masaüstünde maksimum genişlik */
+            box-sizing: border-box;
+            margin-bottom: 20px; /* Kutular arasına boşluk */
         }
 
         /* 3. Giriş Alanı ve Buton Stili */
-        #kod-girisi {
+        input[type="password"] {
             padding: 12px;
             margin-top: 10px;
             border: none;
             border-radius: 6px;
-            width: calc(100% - 24px); /* Genişliği ayarla */
+            width: 100%; /* Tam genişlik kullan */
             font-size: 16px;
             box-sizing: border-box;
             background-color: rgba(255, 255, 255, 0.9);
@@ -56,6 +61,8 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             font-weight: bold;
+            width: 100%; /* Butonu tam genişlik yap */
+            max-width: 300px; /* Butonun masaüstünde çok büyümesini engelle */
         }
 
         button:hover {
@@ -64,15 +71,10 @@
 
         /* 4. Gizli İçerik Stili */
         #gizli-icerik {
-            display: none; /* İçerik başlangıçta görünmez */
-            margin-top: 30px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1); /* Hafif saydam beyaz */
-            border-radius: 8px;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.1); 
             text-align: left;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            box-sizing: border-box;
+            padding: 40px; /* Padding'i merkezkutu ile eşitle */
         }
         
         #gizli-icerik h2 {
@@ -81,12 +83,48 @@
             margin-top: 0;
             color: #f7931e;
         }
-
+        
         /* 5. Hata Mesajı Stili */
         .hata {
             color: #ffdddd;
             margin-top: 15px;
             font-weight: bold;
+        }
+
+        /* ---------------------------------------------------- */
+        /* MEDIA QUERIES (Mobil İyileştirmeler) */
+        /* Ekran genişliği 500px ve altındayken uygulanacak stiller */
+        @media (max-width: 500px) {
+            
+            /* Genel body padding'ini biraz azalt */
+            body {
+                padding: 10px;
+            }
+
+            /* Merkez kutunun içindeki boşluğu (padding) azaltalım */
+            .merkez-kutu {
+                padding: 20px; 
+            }
+
+            /* Başlık boyutunu küçültelim */
+            h1 {
+                font-size: 1.6em; 
+            }
+
+            /* Giriş ve buton yazı boyutunu biraz küçültelim */
+            input[type="password"], button {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            button {
+                max-width: 100%; /* Mobil cihazda tam genişlik */
+            }
+            
+            /* Gizli içerik başlığını küçültelim */
+            #gizli-icerik h2 {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -102,19 +140,22 @@
         <p id="hata-mesaji" class="hata"></p>
     </div>
 
+    <!-- Kodu doğru girildiğinde gösterilecek kısım -->
     <div id="gizli-icerik" class="merkez-kutu"> 
         <h2>Uzlaşma Dosya İçeriği</h2>
         <p><strong>Uzlaşma Dosyanıza Ait Bilgiler:</strong></p>
         
+        <!-- Bilgiler -->
         <p><strong>Ceza Maddesi:</strong> 7258 Sayılı Kanun (Yasadışı Bahis Oynama)</p>
         <p><strong>Uzlaşma Maddesi:</strong> 7326 Sayılı Kanun (Yasadışı Bahis Cezası Affı)</p>
         <p><strong>Yetkili Mali Müşavir:</strong> Altan Sönmez</p>
         <p><strong>İletişim:</strong> 0555 555 55 55</p>
         <p><strong>Dosyanız ile ilgili bilgileri yetkili Avukat aracılığı ile alabilirsiniz.</strong></p>
-        </div>
+    </div>
 
     <script>
         // JavaScript Kodu
+        // Güvenlik Uyarısı: Bu kod tarayıcıda çalıştığı için ciddi güvenlik sağlamaz.
         const dogruKod = "12345"; // !!! Bu kodu DEĞİŞTİRMEYİ UNUTMAYIN !!!
 
         function koduKontrolEt() {
@@ -125,9 +166,7 @@
             if (girilenKod === dogruKod) {
                 // Kod doğruysa, gizli içeriği göster
                 gizliIcerik.style.display = 'block';
-                hataMesaji.textContent = ''; 
-                // Opsiyonel: Kodu girdikten sonra input alanını temizlemek isterseniz:
-                // document.getElementById('kod-girisi').value = ''; 
+                hataMesaji.textContent = ''; // Hata mesajını temizle 
             } else {
                 // Kod yanlışsa, gizli içeriği gizle ve hata mesajı göster
                 gizliIcerik.style.display = 'none';
