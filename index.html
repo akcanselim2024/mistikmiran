@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Uzlaşma Erişim Portalı</title>
+    
+    <style>
+        /* CSS Başlangıcı */
+
+        /* 1. Genel Stil ve Arka Plan */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Mavi Gradient Arka Plan */
+            color: #ffffff; /* Yazı rengini beyaz yap */
+            min-height: 100vh; /* Tam ekran yüksekliği */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Dikeyde ortala */
+            align-items: center; /* Yatayda ortala */
+        }
+
+        /* 2. Merkez Kutusu Stili */
+        .merkez-kutu {
+            background-color: rgba(0, 0, 0, 0.5); /* Yarı saydam siyah arka plan */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 90%;
+            max-width: 400px; /* Maksimum genişlik belirle */
+        }
+
+        /* 3. Giriş Alanı ve Buton Stili */
+        #kod-girisi {
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 6px;
+            width: calc(100% - 24px); /* Genişliği ayarla */
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        button {
+            padding: 12px 25px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 6px;
+            background-color: #f7931e; /* Turuncu-Sarı Renk */
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #e07b00;
+        }
+
+        /* 4. Gizli İçerik Stili */
+        #gizli-icerik {
+            display: none; /* İçerik başlangıçta görünmez */
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* Hafif saydam beyaz */
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        #gizli-icerik h2 {
+            border-bottom: 2px solid #f7931e;
+            padding-bottom: 10px;
+            margin-top: 0;
+            color: #f7931e;
+        }
+
+        /* 5. Hata Mesajı Stili */
+        .hata {
+            color: #ffdddd;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="merkez-kutu">
+        <h1>Uzlaşma Ödenek Sistemi</h1>
+
+        <label for="kod-girisi">Lütfen Dosya Numaranızı giriniz:</label>
+        <input type="password" id="kod-girisi" placeholder="Dosya Numarası">
+        <button onclick="koduKontrolEt()">Sorgula</button>
+
+        <p id="hata-mesaji" class="hata"></p>
+    </div>
+
+    <div id="gizli-icerik" class="merkez-kutu"> 
+        <h2>Uzlaşma Dosya İçeriği</h2>
+        <p><strong>Uzlaşma Dosyanıza Ait Bilgiler:</strong></p>
+        
+        <p><strong>Ceza Maddesi:</strong> 7258 Sayılı Kanun (Yasadışı Bahis Oynama)</p>
+        <p><strong>Uzlaşma Maddesi:</strong> 7326 Sayılı Kanun (Yasadışı Bahis Cezası Affı)</p>
+        <p><strong>Yetkili Mali Müşavir:</strong> Altan Sönmez</p>
         <p><strong>İletişim:</strong> 0555 555 55 55</p>
+        <p><strong>Dosyanız ile ilgili bilgileri yetkili Avukat aracılığı ile alabilirsiniz.</strong></p>
+        </div>
+
+    <script>
+        // JavaScript Kodu
+        const dogruKod = "12345"; // !!! Bu kodu DEĞİŞTİRMEYİ UNUTMAYIN !!!
+
+        function koduKontrolEt() {
+            const girilenKod = document.getElementById('kod-girisi').value;
+            const gizliIcerik = document.getElementById('gizli-icerik');
+            const hataMesaji = document.getElementById('hata-mesaji');
+
+            if (girilenKod === dogruKod) {
+                // Kod doğruysa, gizli içeriği göster
+                gizliIcerik.style.display = 'block';
+                hataMesaji.textContent = ''; 
+                // Opsiyonel: Kodu girdikten sonra input alanını temizlemek isterseniz:
+                // document.getElementById('kod-girisi').value = ''; 
+            } else {
+                // Kod yanlışsa, gizli içeriği gizle ve hata mesajı göster
+                gizliIcerik.style.display = 'none';
+                hataMesaji.textContent = 'Dosya numarası hatalı veya geçersiz. Lütfen doğru Dosya numarası giriniz.';
+            }
+        }
+    </script>
+
+</body>
+</html>
