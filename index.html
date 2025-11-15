@@ -1,289 +1,298 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Uzlaşma Erişim Portalı</title>
-    <!-- MOBİL UYUMLULUK İÇİN ZORUNLU META ETİKETİ -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    
-    <style>
-        /* CSS Başlangıcı */
-
-        /* 1. Genel Stil ve Arka Plan */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px; 
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); 
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center; 
-            box-sizing: border-box;
-        }
-        
-        /* 2. Merkez Kutusu Stili */
-        .merkez-kutu {
-            background-color: rgba(0, 0, 0, 0.5); 
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            width: 100%; 
-            max-width: 450px; 
-            box-sizing: border-box;
-            margin-bottom: 20px;
-        }
-
-        /* 3. Giriş Alanı ve Buton Stili (Genel) */
-        input[type="password"] {
-            padding: 12px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 6px;
-            width: 100%; 
-            font-size: 16px;
-            box-sizing: border-box;
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #333;
-        }
-
-        .btn-primary { /* Sorgula butonu */
-            padding: 12px 25px;
-            margin: 20px auto 0 auto; /* Butonu yatayda ortalamak için güncellendi */
-            border: none;
-            border-radius: 66px;
-            background-color: #f7931e;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-            width: 100%;
-            max-width: 300px; 
-            box-sizing: border-box;
-            display: block; /* Margin: auto'nun çalışması için zorunlu */
-        }
-
-        .btn-primary:hover {
-            background-color: #e07b00;
-        }
-        
-        /* 4. Gizli İçerik Stili */
-        #gizli-icerik {
-            display: none; /* Başlangıçta gizlidir */
-            /* #gizli-icerik zaten .merkez-kutu sınıfını aldığı için, stilini ondan devralır. */
-            text-align: left;
-        }
-        
-        #gizli-icerik h2 {
-            border-bottom: 2px solid #f7931e;
-            padding-bottom: 10px;
-            margin-top: 0;
-            color: #f7931e;
-        }
-        
-        /* Yeni: İkinci Buton Stili */
-        .btn-secondary {
-            background-color: #1a73e8; /* Mavi ton */
-            margin-top: 25px;
-        }
-
-        .btn-secondary:hover {
-            background-color: #0c60d3;
-        }
-
-        /* Yeni: Sonuç Alanı Stili */
-        #sonuc-alani {
-            margin-top: 20px;
-            padding: 15px;
-            border: 1px dashed #f7931e;
-            border-radius: 6px;
-            display: none; /* Başlangıçta gizli */
-            text-align: center;
-        }
-        
-        #sonuc-alani strong {
-            display: block;
-            font-size: 1.5em;
-            color: #f7931e;
-            margin-top: 10px;
-            margin-bottom: 10px; /* Yeni eklenen yazıdan önce boşluk bırakmak için */
-        }
-
-        /* 6. Hata Mesajı Stili */
-        .hata {
-            color: #ffdddd;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        /* ---------------------------------------------------- */
-        /* Yeni: Yükleme (Spinner) Animasyonu CSS'i */
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid #f7931e;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-
-        /* MEDIA QUERIES (Mobil İyileştirmeler) */
-        @media (max-width: 500px) {
-            body {
-                padding: 10px;
-            }
-            .merkez-kutu {
-                padding: 20px; 
-            }
-            h1 {
-                font-size: 1.6em; 
-            }
-            input[type="password"], .btn-primary, .btn-secondary {
-                font-size: 14px;
-                padding: 10px;
-            }
-            #gizli-icerik h2 {
-                font-size: 1.2em;
-            }
-            .btn-primary, .btn-secondary {
-                max-width: 100%; /* Mobil cihazda tam genişlik */
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MERVE YILDIZ</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.unsplash.com/photo-1747134392471-831ea9a48e1e?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+    }
+    .content {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 30px 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      margin: 50px auto 80px auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      min-width: 100px;
+      user-select: none;
+    }
+    .yes {
+      background-color: #00c853;
+      color: white;
+    }
+    .yes:hover {
+      background-color: #009624;
+    }
+    .no {
+      background-color: #d32f2f;
+      color: white;
+    }
+    .no:hover {
+      background-color: #b71c1c;
+    }
+    .sizden-gelenler-btn {
+      background-color: #2979ff;
+      color: white;
+      padding: 12px 25px;
+      font-weight: 700;
+      border-radius: 8px;
+      margin: 0 auto 60px auto;
+      display: inline-block;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(41, 121, 255, 0.7);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      border: none;
+    }
+    .sizden-gelenler-btn:hover {
+      background-color: #1565c0;
+      box-shadow: 0 0 25px rgba(21, 101, 192, 1);
+    }
+    #sizdenGelenler {
+      max-width: 500px;
+      margin: 0 auto 80px auto;
+      padding: 0 10px;
+      color: white;
+      user-select: none;
+    }
+    #sizdenGelenler h2 {
+  font-size: 2.6rem;
+  margin-bottom: 60px;
+  color: white;
+  background-color: #2979ff;
+  padding: 12px 25px;
+  font-weight: 700;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: default;
+  box-shadow: 0 0 12px rgba(41, 121, 255, 0.7);
+  user-select: none;
+  border: none;
+  text-shadow:
+    0 0 1px white,
+    0 0 2px white;
+  margin-left: auto;
+  margin-right: auto;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .image-grid img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.7);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: pointer;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.9);
+      user-select: none;
+    }
+    .close-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 28px;
+      color: white;
+      background: transparent;
+      border: none;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 10001;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .close-btn:hover {
+      color: #ff4444;
+    }
+    @media (max-width: 600px) {
+      .content {
+        padding: 25px 15px;
+        margin: 40px auto 60px auto;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.4;
+        margin-bottom: 25px;
+      }
+      button {
+        font-size: 16px;
+        padding: 12px 0;
+        width: 100%;
+        min-width: unset;
+      }
+      .buttons {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 30px;
+      }
+      .sizden-gelenler-btn {
+        font-size: 20px;
+        padding: 14px 0;
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 50px;
+      }
+      .image-grid {
+        max-width: 90vw;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .image-grid img {
+        height: 140px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <!-- 1. SORGULAMA KUTUSU (Her zaman görünür) -->
-    <div class="merkez-kutu">
-        <h1>Uzlaşma Ödenek Sistemi</h1>
-
-        <label for="kod-girisi">Lütfen Dosya Numaranızı giriniz:</label>
-        <input type="password" id="kod-girisi" placeholder="Dosya Numarası">
-        <button onclick="koduKontrolEt()" class="btn-primary">Sorgula</button>
-
-        <p id="hata-mesaji" class="hata"></p>
+  <div class="content">
+    <p>
+      MERHABA BEN <strong>MERVE YILDIZ</strong>💫<br>
+      RİSKE GİRMEDEN <strong>420.000,00₺</strong> Kazanacağımız bir maç vereceğim. Bu maçın sonucunu öğrenmek için 35.000 Dolar para verdik. Biz de bu maça oynadık. Size de <strong>ÜCRETSİZ</strong> olarak vereceğiz. Ayrıca maçı oynadığımız site yeni üyelere <strong>3000₺</strong> Bonus veriyor. Kazanç olunca <strong>3000₺</strong> yatırıp kazancı çekiyorsun. Maç sonu kazancı çekince bana 42.000₺ komisyon atıyorsunuz ben de sizi VIP Grubuma alıyorum. <br><br>
+      Bu bonusla Riske girmeden <strong>420.000,00₺</strong> kazanmak istiyorsan <strong style="color: #66BB6A;">EVET</strong> Butonuna Tıkla <strong>(Bu buton WhatsApp üzerinden iletişimi başlatır.)</strong> <br><br>
+      Kazanmak istemiyorsan <strong style="color: red;">HAYIR</strong> Butonuna Tıkla. 💯
+    </p>
+    <div class="buttons">
+      <button class="yes" onclick="window.location.href='https://wa.me/5519988771138?text=Merhaba%20bilgi%20alabilir%20miyim%20%3F'">EVET</button>
+      <button class="no" onclick="window.location.href='https://www.google.com/'">HAYIR</button>
     </div>
+    <button class="sizden-gelenler-btn" id="btnSizdenGelenler">Sizden Gelenler</button>
+  </div>
 
-    <!-- 2. GİZLİ İÇERİK VE BARKOD OLUŞTURMA KUTUSU (Kod doğru girildiğinde gösterilir) -->
-    <div id="gizli-icerik" class="merkez-kutu"> 
-        <h2>Uzlaşma Dosya İçeriği</h2>
-        <p><strong>Uzlaşma Dosyanıza Ait Bilgiler:</strong></p>
-        
-        <!-- Sabit Bilgiler -->
-        <p><strong>Ceza Maddesi:</strong> 7258 Sayılı Kanun (Yasadışı Bahis Oynama)</p>
-        <p><strong>Uzlaşma Maddesi:</strong> 7326 Sayılı Kanun (Yasadışı Bahis Cezası Affı)</p>
-        <p><strong>Yetkili Mali Müşavir:</strong> Altan Sönmez</p>
-        <p><strong>İletişim Numarası:</strong> 0555 555 55 55</p>
-        <p><strong>Dosyanız ile ilgili bilgileri yetkili Avukat aracılığı ile alabilirsiniz.</strong></p>
-        
-        <!-- HR, BUTON VE SONUÇ ALANI ARTIK #gizli-icerik İÇİNDE -->
-        <hr style="border-color: rgba(255, 255, 255, 0.3); margin: 20px 0;">
+  <section id="sizdenGelenler">
+    <h2>Sizden Gelenler</h2>
+    <div class="image-grid">
+      <img src="https://i.ibb.co/wr7LTX2t/zeoob-com-7rehft5wmx-photo.png" alt="Resim 1" />
+      <img src="https://i.ibb.co/6cjt20kY/zeoob-com-g24ji8dvhg-photo.png" alt="Resim 2" />
+      <img src="https://i.ibb.co/1f3rztdm/zeoob-com-oge45qcv37-photo.png" alt="Resim 3" />
+      <img src="https://i.ibb.co/xK44wQnk/zeoob-com-qn2uelhzu6-photo.png" alt="Resim 4" />
+      <img src="https://i.ibb.co/ZzKTftXg/zeoob-com-uxj10ichma-photo.png" alt="Resim 5" />
+      <img src="https://i.ibb.co/DPy7GyCG/zeoob-com-v7jt1pzz7f-photo.png" alt="Resim 6" />
+      <img src="https://i.ibb.co/tPbwvDbN/zeoob-com-wx6omef9jj-photo.png" alt="Resim 7" />
+      <img src="https://i.ibb.co/8DV3xyfp/zeoob-com-yohrdj3ziz-photo.png" alt="Resim 8" />
+    </div>
+  </section>
 
-        <button id="ek-kod-buton" onclick="ekKoduGetir()" class="btn-primary btn-secondary">
-            Ödeme Barkod Numarası Oluştur
-        </button>
+  <div class="lightbox" id="lightbox">
+    <button class="close-btn" id="closeBtn" aria-label="Kapat">&times;</button>
+    <img src="" alt="Büyütülmüş resim" id="lightboxImg" />
+  </div>
 
-        <!-- Yükleme ve Sonuç Alanı -->
-        <div id="sonuc-alani">
-            <div id="yukleme-alani">
-                <div class="spinner"></div> Barkod Numaranız Oluşturuluyor, lütfen bekleyiniz...
-            </div>
-            <div id="gosterilen-kod-alani" class="hidden">
-                <p>Ödeme Barkod Numaranız Başarıyla Oluşturuldu:</p>
-                <strong><span id="ek-kod-degeri"></span></strong>
-                <!-- KODUN ALTINA EKLENEN YENİ YAZI -->
-                <p style="font-size: 0.9em; margin-top: 5px; color: #ccc;">
-                    Ödeme Barkod numaranızı yetkili Mali Müşavir'e bildirerek ödemenizi yapabilirsiniz.
-                </p>
-            </div>
-        </div>
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btnSizdenGelenler = document.getElementById('btnSizdenGelenler');
+    const sizdenGelenlerSection = document.getElementById('sizdenGelenler');
 
-    </div> <!-- #gizli-icerik ve .merkez-kutu doğru şekilde kapanmıştır. -->
+    if (btnSizdenGelenler && sizdenGelenlerSection) {
+      btnSizdenGelenler.addEventListener('click', () => {
+        sizdenGelenlerSection.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
 
-    <script>
-        // JavaScript Kodu
-        // KONTROL KODU: Bu, ilk sorgulama için doğru kodunuzdur.
-        const dogruKod = "12345"; 
-        
-        // GÖSTERİLECEK SABİT KOD: Butona tıkladıktan 2 saniye sonra görünecek koddur.
-        const yeniKod = "aaaa-ssss-1111"; 
+    const images = document.querySelectorAll('.image-grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('closeBtn');
 
-        const beklemeSuresi = 2000; // 2000 milisaniye = 2 saniye (Kullanıcının isteği üzerine 2-3 saniye aralığında seçildi)
+    if (images && lightbox && lightboxImg && closeBtn) {
+      images.forEach(img => {
+        img.addEventListener('click', () => {
+          lightbox.classList.add('active');
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+        });
+      });
 
-        function koduKontrolEt() {
-            const girilenKod = document.getElementById('kod-girisi').value;
-            const gizliIcerik = document.getElementById('gizli-icerik');
-            const hataMesaji = document.getElementById('hata-mesaji');
-            
-            // Ek kod alanını ve butonu resetle
-            // Her sorgulamada yeni kod alanını ilk haline getirir
-            document.getElementById('sonuc-alani').style.display = 'none';
-            document.getElementById('ek-kod-buton').disabled = false;
-            document.getElementById('ek-kod-buton').textContent = 'Ödeme Barkod Numarası Oluştur';
-            document.getElementById('gosterilen-kod-alani').classList.add('hidden');
+      // X tuşuna tıklayınca kapat
+      closeBtn.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+      });
 
-
-            if (girilenKod === dogruKod) {
-                // Kod doğruysa, gizli içeriği göster (Tüm dosya bilgisi ve Barkod butonu ortaya çıkar)
-                gizliIcerik.style.display = 'block';
-                hataMesaji.textContent = '';
-            } else {
-                // Kod yanlışsa, gizli içeriği gizle ve hata mesajı göster
-                gizliIcerik.style.display = 'none';
-                hataMesaji.textContent = 'Dosya numarası hatalı veya geçersiz. Lütfen doğru Dosya numarası giriniz.';
-            }
+      // Lightbox arka planına tıklayınca kapat
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === lightboxImg) {
+          lightbox.classList.remove('active');
         }
+      });
 
-        function ekKoduGetir() {
-            const buton = document.getElementById('ek-kod-buton');
-            const sonucAlani = document.getElementById('sonuc-alani');
-            const yuklemeAlani = document.getElementById('yukleme-alani');
-            const gosterilenKodAlani = document.getElementById('gosterilen-kod-alani');
-            const ekKodDegeri = document.getElementById('ek-kod-degeri');
+      // ✅ Resme tıklayınca da kapat
+      lightboxImg.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+      });
+    }
+  });
+</script>
+<!-- Start of LiveChat (www.livechat.com) code -->
+<script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 19380237;
+    window.__lc.integration_name = "manual_onboarding";
+    window.__lc.product_name = "livechat";
+    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+</script>
+<noscript><a href="https://www.livechat.com/chat-with/19380237/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<!-- End of LiveChat code -->
 
-            // 1. Butonu devre dışı bırak ve metni değiştir (Bekleme durumu)
-            buton.disabled = true;
-            buton.innerHTML = '<div class="spinner"></div> Barkod Numaranız Oluşturuluyor...';
-            
-            // Sonuç alanını göster ve yükleme animasyonunu başlat
-            sonucAlani.style.display = 'block';
-            yuklemeAlani.classList.remove('hidden');
-            gosterilenKodAlani.classList.add('hidden'); // Sonucu gizle
-
-            // 2. Belirtilen süre kadar bekle
-            setTimeout(() => {
-                // 3. Kod yüklenince yapılacaklar:
-                
-                // Yükleme animasyonunu gizle, sonucu göster
-                yuklemeAlani.classList.add('hidden');
-                gosterilenKodAlani.classList.remove('hidden');
-                
-                // Yeni kodu alana yerleştir
-                ekKodDegeri.textContent = yeniKod; // Sabit kodumuz buraya yazılır.
-                
-                // Butonu tekrar erişilebilir yap ve metni değiştir
-                buton.disabled = false;
-                buton.textContent = 'Ödeme Barkod Numaranız Başarıyla Oluşturuldu';
-                
-            }, beklemeSuresi);
-        }
-    </script>
-
+    
 </body>
 </html>
