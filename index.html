@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SELİM AKCAN - Anasayfa</title>
+<title>SELİM AKCAN - Sizden Gelenler</title>
 <style>
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
@@ -28,25 +28,22 @@ nav {
   gap: 20px;
   padding: 15px 0;
   z-index: 9999;
-
   background: rgba(30,30,30,0.85);
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   border-radius: 0;
   transition: top 0.3s ease;
 }
-
 nav a {
   text-decoration: none;
   font-weight: 600;
   font-size: 16px;
   padding: 12px 28px;
   border-radius: 30px;
-  background-color: #444; /* koyu gri ton */
+  background-color: #444;
   color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   transition: all 0.3s ease;
 }
-
 nav a:hover {
   background-color: #66BB6A;
   color: #fff;
@@ -57,67 +54,93 @@ nav a:hover {
 /* İçerik */
 .content {
   background: rgba(0,0,0,0.75);
-  padding: 50px 25px;
+  padding: 40px 20px;
   border-radius: 15px;
-  max-width: 600px;
+  max-width: 700px;
   margin: 20px auto;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-p { font-size: 17px; line-height: 1.6; margin-bottom: 35px; }
-
-/* Butonlar */
-.buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 40px;
-}
-
-button.yes {
-  background-color: #00c853;
-  color: white;
-  padding: 12px 25px;
-  font-weight: 700;
-  border-radius: 8px;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 0 12px rgba(0,200,83,1);
-  border: none;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-button.yes:hover {
-  background-color: #009624;
-  box-shadow: 0 0 25px rgba(0,200,83,1);
-  transform: scale(1.05);
-}
-
-button.sizden-gelenler-btn {
+.content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  color: #fff;
   background-color: #2979ff;
-  color: white;
   padding: 12px 25px;
-  font-weight: 700;
   border-radius: 8px;
-  font-size: 18px;
-  cursor: pointer;
   box-shadow: 0 0 12px rgba(41,121,255,0.7);
-  border: none;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-button.sizden-gelenler-btn:hover {
-  background-color: #1565c0;
-  box-shadow: 0 0 25px rgba(21,101,192,1);
-  transform: scale(1.05);
+  display: inline-block;
 }
 
-/* Mobilde de yan yana */
+/* Image Grid */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+.image-grid img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0,0,0,0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.image-grid img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 18px rgba(41,121,255,0.7);
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100vw;
+  height:100vh;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+}
+.lightbox.active {
+  display: flex;
+}
+.lightbox img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.9);
+}
+
+/* Close Button */
+.close-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+.close-btn:hover {
+  color: #ff4444;
+}
+
+/* Mobil */
 @media (max-width: 600px) {
-  nav { flex-direction: row; gap: 15px; padding: 10px 0; }
   nav a { padding: 10px 18px; font-size: 14px; }
   body { padding-top: 70px; }
-  .content { padding: 35px 15px; margin: 20px 15px; }
-  button { width: 100%; font-size: 16px; padding: 12px 0; }
+  .content { padding: 25px 15px; margin: 15px auto; }
+  .image-grid { grid-template-columns: 1fr 1fr; }
+  .image-grid img { height: 120px; }
 }
 </style>
 </head>
@@ -129,21 +152,27 @@ button.sizden-gelenler-btn:hover {
 </nav>
 
 <div class="content">
-  <p>
-    Merhaba ben TFF'den lisanslı futbolcu <strong>Selim AKCAN.</strong><br>
-    7/24 analiz ekibimle, ön yatırımsız hoş geldin bonusu veren siteleri araştırıp bu siteler üzerinden cebinden tek kuruş riske etmeden hesabına tanımlanan <strong>3.000₺</strong> hoş geldin bonusu ile vereceğim şikeli kuponu oynayarak büyük kazanç fırsatı yakalamanı sağlıyorum.<br><br>
-    ✅ Maç kazanırsa senden beklentim yalnızca %10 pay (42.000₺)<br>
-    ❌ Kaybedersen sadece şansını denemiş olursun<br>
-    📈 Oran: <strong>140.00</strong> --> 💰 <strong>420.000₺ kazanç</strong><br><br>
-    Bu bonusla Riske girmeden <strong>420.000,00₺</strong> kazanmak istiyorsan <strong style="color: #66BB6A;">EVET</strong> Butonuna Tıkla <br>(Bu buton WhatsApp üzerinden iletişimi başlatır.)
-  </p>
-  <div class="buttons">
-    <button class="yes" onclick="window.location.href='https://wa.me/5519988771138?text=Merhaba%20kazanmak%20istiyorum%20'">EVET</button>
-    <button class="sizden-gelenler-btn" onclick="window.location.href='sizdenGelenler.html'">Sizden Gelenler</button>
+  <h2>Sizden Gelenler</h2>
+  <div class="image-grid">
+    <img src="https://i.ibb.co/wr7LTX2t/zeoob-com-7rehft5wmx-photo.png" alt="Resim 1">
+    <img src="https://i.ibb.co/6cjt20kY/zeoob-com-g24ji8dvhg-photo.png" alt="Resim 2">
+    <img src="https://i.ibb.co/1f3rztdm/zeoob-com-oge45qcv37-photo.png" alt="Resim 3">
+    <img src="https://i.ibb.co/xK44wQnk/zeoob-com-qn2uelhzu6-photo.png" alt="Resim 4">
+    <img src="https://i.ibb.co/ZzKTftXg/zeoob-com-uxj10ichma-photo.png" alt="Resim 5">
+    <img src="https://i.ibb.co/DPy7GyCG/zeoob-com-v7jt1pzz7f-photo.png" alt="Resim 6">
+    <img src="https://i.ibb.co/tPbwvDbN/zeoob-com-wx6omef9jj-photo.png" alt="Resim 7">
+    <img src="https://i.ibb.co/8DV3xyfp/zeoob-com-yohrdj3ziz-photo.png" alt="Resim 8">
   </div>
 </div>
 
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="close-btn" id="closeBtn" aria-label="Kapat">&times;</button>
+  <img src="" alt="Büyütülmüş resim" id="lightboxImg">
+</div>
+
 <script>
+/* Navbar scroll hide */
 let prevScrollPos = window.pageYOffset;
 const navbar = document.getElementById("navbar");
 window.onscroll = function() {
@@ -155,6 +184,26 @@ window.onscroll = function() {
   }
   prevScrollPos = currentScrollPos;
 }
+
+/* Lightbox functionality */
+const images = document.querySelectorAll('.image-grid img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const closeBtn = document.getElementById('closeBtn');
+
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.classList.add('active');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+  });
+});
+
+closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox || e.target === lightboxImg) lightbox.classList.remove('active');
+});
+lightboxImg.addEventListener('click', () => lightbox.classList.remove('active'));
 </script>
 
 </body>
