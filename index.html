@@ -8,7 +8,7 @@
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-image: url('arkaplan.jpg');
+  background-image: url('img/arkaplan.jpg');
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -28,21 +28,25 @@ nav {
   gap: 20px;
   padding: 15px 0;
   z-index: 9999;
+
   background: rgba(30,30,30,0.85);
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   border-radius: 0;
+  transition: top 0.3s ease;
 }
+
 nav a {
   text-decoration: none;
   font-weight: 600;
   font-size: 16px;
   padding: 12px 28px;
   border-radius: 30px;
-  background-color: #444;
+  background-color: #444; /* koyu gri ton */
   color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   transition: all 0.3s ease;
 }
+
 nav a:hover {
   background-color: #66BB6A;
   color: #fff;
@@ -56,7 +60,7 @@ nav a:hover {
   padding: 50px 25px;
   border-radius: 15px;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 20px 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
