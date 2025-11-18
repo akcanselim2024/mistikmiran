@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SELİM AKCAN - Anasayfa</title>
+<style>
+* { box-sizing: border-box; margin:0; padding:0; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('img/arkaplan.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding-top: 80px;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* Navigation Bar */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px 0;
+  z-index: 9999;
+
+  background: rgba(30,30,30,0.85);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  border-radius: 0;
+  transition: top 0.3s ease;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  background-color: #444; /* koyu gri ton */
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #66BB6A;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(102,187,106,0.6);
+}
+
+/* İçerik */
+.content {
+  background: rgba(0,0,0,0.75);
+  padding: 50px 25px;
+  border-radius: 15px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+p { font-size: 17px; line-height: 1.6; margin-bottom: 35px; }
+
+/* Butonlar */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+button.yes {
+  background-color: #00c853;
+  color: white;
+  padding: 12px 25px;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0,200,83,1);
+  border: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+button.yes:hover {
+  background-color: #009624;
+  box-shadow: 0 0 25px rgba(0,200,83,1);
+  transform: scale(1.05);
+}
+
+button.sizden-gelenler-btn {
+  background-color: #2979ff;
+  color: white;
+  padding: 12px 25px;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(41,121,255,0.7);
+  border: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+button.sizden-gelenler-btn:hover {
+  background-color: #1565c0;
+  box-shadow: 0 0 25px rgba(21,101,192,1);
+  transform: scale(1.05);
+}
+
+/* Mobilde de yan yana */
+@media (max-width: 600px) {
+  nav { flex-direction: row; gap: 15px; padding: 10px 0; }
+  nav a { padding: 10px 18px; font-size: 14px; }
+  body { padding-top: 70px; }
+  .content { padding: 35px 15px; margin: 20px 15px; }
+  button { width: 100%; font-size: 16px; padding: 12px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html">Anasayfa</a>
+  <a href="sizdengelenler.html">Sizden Gelenler</a>
+</nav>
+
+<div class="content">
+  <p>
+    Merhaba ben TFF'den lisanslı futbolcu <strong>Selim AKCAN.</strong><br>
+    7/24 analiz ekibimle, ön yatırımsız hoş geldin bonusu veren siteleri araştırıp bu siteler üzerinden cebinden tek kuruş riske etmeden hesabına tanımlanan <strong>3.000₺</strong> hoş geldin bonusu ile vereceğim şikeli kuponu oynayarak büyük kazanç fırsatı yakalamanı sağlıyorum.<br><br>
+    ✅ Maç kazanırsa senden beklentim yalnızca %10 pay (42.000₺)<br>
+    ❌ Kaybedersen sadece şansını denemiş olursun<br>
+    📈 Oran: <strong>140.00</strong> --> 💰 <strong>420.000₺ kazanç</strong><br><br>
+    Bu bonusla Riske girmeden <strong>420.000,00₺</strong> kazanmak istiyorsan <strong style="color: #66BB6A;">EVET</strong> Butonuna Tıkla <br>(Bu buton WhatsApp üzerinden iletişimi başlatır.)
+  </p>
+  <div class="buttons">
+    <button class="yes" onclick="window.location.href='https://wa.me/5519988771138?text=Merhaba%20kazanmak%20istiyorum%20'">EVET</button>
+    <button class="sizden-gelenler-btn" onclick="window.location.href='sizdengelenler.html'">Sizden Gelenler</button>
+  </div>
+</div>
+
+<script>
+// Navbar her zaman görünür olacak, scroll gizleme kaldırıldı
+const navbar = document.getElementById("navbar");
+</script>
+
+</body>
+</html>
+
