@@ -12,25 +12,27 @@ body {
   background-size: cover;
   background-position: center;
   color: #fff;
-  padding-top: 80px; /* nav yüksekliği kadar boşluk */
+  padding-top: 80px;
   min-height: 100vh;
   text-align: center;
 }
 
-/* Premium Navigation Bar */
+/* Navigation Bar */
 nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(0,0,0,0.85);
   display: flex;
   justify-content: center;
-  gap: 20px; /* linkler arası boşluk */
+  gap: 20px;
   padding: 15px 0;
   z-index: 9999;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-  transition: top 0.3s ease, background 0.3s ease;
+
+  background: rgba(30,30,30,0.85);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  border-radius: 0;
+  transition: top 0.3s ease;
 }
 
 nav a {
@@ -39,32 +41,15 @@ nav a {
   font-size: 16px;
   padding: 12px 28px;
   border-radius: 30px;
-  background: linear-gradient(135deg, #444, #222);
+  background-color: #444; /* koyu gri ton */
   color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   transition: all 0.3s ease;
-  position: relative;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 5px;
-  transform: translateX(-50%);
-  width: 0%;
-  height: 3px;
-  background-color: #66BB6A;
-  border-radius: 3px;
-  transition: 0.3s ease;
-}
-
-nav a:hover::after {
-  width: 60%;
 }
 
 nav a:hover {
-  background: linear-gradient(135deg, #555, #111);
+  background-color: #66BB6A;
+  color: #fff;
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(102,187,106,0.6);
 }
@@ -75,17 +60,13 @@ nav a:hover {
   padding: 50px 25px;
   border-radius: 15px;
   max-width: 600px;
-  margin: 80px auto;
+  margin: 20px auto;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-p {
-  font-size: 17px;
-  line-height: 1.6;
-  margin-bottom: 35px;
-}
+p { font-size: 17px; line-height: 1.6; margin-bottom: 35px; }
 
-/* Butonlar alt alta ve animasyonlu */
+/* Butonlar */
 .buttons {
   display: flex;
   flex-direction: column;
@@ -94,7 +75,6 @@ p {
   margin-bottom: 40px;
 }
 
-/* EVET Butonu */
 button.yes {
   background-color: #00c853;
   color: white;
@@ -113,7 +93,6 @@ button.yes:hover {
   transform: scale(1.05);
 }
 
-/* Sizden Gelenler Butonu */
 button.sizden-gelenler-btn {
   background-color: #2979ff;
   color: white;
@@ -132,7 +111,7 @@ button.sizden-gelenler-btn:hover {
   transform: scale(1.05);
 }
 
-/* Mobilde de linkler yan yana */
+/* Mobilde de yan yana */
 @media (max-width: 600px) {
   nav { flex-direction: row; gap: 15px; padding: 10px 0; }
   nav a { padding: 10px 18px; font-size: 14px; }
@@ -170,9 +149,9 @@ const navbar = document.getElementById("navbar");
 window.onscroll = function() {
   let currentScrollPos = window.pageYOffset;
   if (prevScrollPos > currentScrollPos) {
-    navbar.style.top = "0"; // yukarı kaydırınca görün
+    navbar.style.top = "0";
   } else {
-    navbar.style.top = "-120px"; // aşağı kaydırınca gizle
+    navbar.style.top = "-120px";
   }
   prevScrollPos = currentScrollPos;
 }
